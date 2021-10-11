@@ -8,8 +8,8 @@ public interface CategoryMapper {
 
     /**
      * 查找类目的对象
-     * @param id
-     * @return
+     * @param id 查询类目id
+     * @return Category
      */
     @Select("select * from mall_category where id = #{id}")
     Category findById(@Param("id") Integer id);
