@@ -1,2 +1,17 @@
-mall-pay
-  
+wx:
+  appId: 123456
+  mchId: 123
+  mchKey: 1e
+  notifyUrl: ssss
+  returnUrl: return
+
+alipay:
+  appId: 123
+  privateKey: 123
+  publicKey: wfasf
+  notifyUrl: 123
+  returnUrl: dsada
+
+
+
+
