@@ -5,8 +5,8 @@
     <title>QrCode生成画面</title>
 </head>
 
-<script src="/static/jquery-3.6.0.min.js" type="text/javascript"></script>
-<script src="/static/jquery.qrcode.min.js"  type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/jquery/1.5.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <body>
 
 <div id="qrcode">
@@ -15,9 +15,9 @@
 </body>
 <script>
     $("#qrcode").qrcode({
-        width:64,
-        height:64,
-        text:"aa"
+        width:364,
+        height:364,
+        text:"${codeUrl}"
     })
 </script>
 </html>

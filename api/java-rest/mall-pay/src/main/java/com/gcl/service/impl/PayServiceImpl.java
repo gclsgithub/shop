@@ -29,7 +29,7 @@ public class PayServiceImpl implements PayService {
     public PayResponse create(String orderId, BigDecimal money, BestPayTypeEnum bestPayTypeEnum){
 
         PayRequest payRequest = new PayRequest();
-        payRequest.setOrderName("6889012-微信支付测试");
+        payRequest.setOrderName("6889012-微信支付测试1");
         payRequest.setOrderId(orderId);
         payRequest.setOrderAmount(money.doubleValue());
         payRequest.setPayTypeEnum(bestPayTypeEnum);

@@ -8,5 +8,5 @@ import java.math.BigDecimal;
 
 public interface PayService {
 
-    public PayResponse create(String orderId, BigDecimal money, BestPayTypeEnum bestPayTypeEnum);
+     PayResponse create(String orderId, BigDecimal money, BestPayTypeEnum bestPayTypeEnum);
 }
