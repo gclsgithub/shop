@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BestPayConfig {
+
     @Autowired
     private WxAccountConfig wxAccountConfig;
 
@@ -42,5 +43,16 @@ public class BestPayConfig {
         wxPayConfig.setNotifyUrl(wxAccountConfig.getNotifyUrl());
         wxPayConfig.setReturnUrl(wxAccountConfig.getReturnUrl());
         return wxPayConfig;
+    }
+
+    @Bean
+    public AliPayConfig aliPayConfig() {
+        AliPayConfig aliPayConfig = new AliPayConfig();
+        aliPayConfig.setAliPayPublicKey(alipayAccountConfig.getPublicKey());
+        aliPayConfig.setNotifyUrl(alipayAccountConfig.getNotifyUrl());
+        aliPayConfig.setReturnUrl(alipayAccountConfig.getReturnUrl());
+        aliPayConfig.setPrivateKey(alipayAccountConfig.getPrivateKey());
+        aliPayConfig.setAppId(alipayAccountConfig.getAppId());
+        return aliPayConfig;
     }
 }

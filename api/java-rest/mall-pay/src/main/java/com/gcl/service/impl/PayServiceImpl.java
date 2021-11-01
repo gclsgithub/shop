@@ -1,5 +1,6 @@
 package com.gcl.service.impl;
 
+import com.gcl.dao.PayInfoMapper;
 import com.gcl.service.PayService;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
@@ -18,6 +19,8 @@ public class PayServiceImpl implements PayService {
     @Autowired
     private BestPayService bestPayService;
 
+    @Autowired
+    private PayInfoMapper payInfoMapper;
 
     /**
      * 创建支付订单
@@ -28,14 +31,19 @@ public class PayServiceImpl implements PayService {
      */
     public PayResponse create(String orderId, BigDecimal money, BestPayTypeEnum bestPayTypeEnum){
 
+        //查找数据库是否存在相同的订单
+        //存在相同的订单则报错
+        payInfoMapper.selectByOrderId(orderId);
+        //不存在相同的订单号，进行创建订单处理
+
         PayRequest payRequest = new PayRequest();
-        payRequest.setOrderName("6889012-微信支付测试1");
+        payRequest.setOrderName("6889012-支付宝支付支付测试1");
         payRequest.setOrderId(orderId);
         payRequest.setOrderAmount(money.doubleValue());
         payRequest.setPayTypeEnum(bestPayTypeEnum);
+
         PayResponse response = bestPayService.pay(payRequest);
         log.info("response:"+response);
-
         return response;
     }
 }

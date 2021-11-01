@@ -29,20 +29,19 @@ public class PayController {
     public ModelAndView createWechatPay(@RequestParam(value = "orderId",required = true) String orderId,
                                         @RequestParam(value = "money", required = true) String money,
                                         @RequestParam(value = "payType",required = true) BestPayTypeEnum bestPayTypeEnum){
-
-
         PayResponse response = payService.create(orderId,new BigDecimal(money),bestPayTypeEnum);
-
         //支付方式不同，渲染就不同, WXPAY_NATIVE使用codeUrl,  ALIPAY_PC使用body
         Map<String, String> map = new HashMap<>();
         if (bestPayTypeEnum == BestPayTypeEnum.WXPAY_NATIVE) {
+            //微信支付
             map.put("codeUrl", response.getCodeUrl());
             map.put("orderId", orderId);
             map.put("returnUrl", wxPayConfig.getReturnUrl());
-            return new ModelAndView("doPay", map);
+            return new ModelAndView("doPayWx", map);
         }else if (bestPayTypeEnum == BestPayTypeEnum.ALIPAY_PC) {
+            //支付宝支付
             map.put("body", response.getBody());
-            return new ModelAndView("doPay", map);
+            return new ModelAndView("doPayAli", map);
         }
         throw new RuntimeException("暂不支持的支付类型");
     }
