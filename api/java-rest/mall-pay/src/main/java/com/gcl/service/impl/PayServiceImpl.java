@@ -63,4 +63,9 @@ public class PayServiceImpl implements PayService {
         log.info("response:" + response);
         return response;
     }
+
+    @Override
+    public PayInfo queryByOrderId(String orderId) {
+        return payInfoMapper.selectByOrderId(orderId);
+    }
 }

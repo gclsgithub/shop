@@ -1,5 +1,6 @@
 package com.gcl.controller;
 
+import com.gcl.entity.PayInfo;
 import com.gcl.service.PayService;
 import com.lly835.bestpay.config.WxPayConfig;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -44,5 +46,11 @@ public class PayController {
             return new ModelAndView("doPayAli", map);
         }
         throw new RuntimeException("暂不支持的支付类型");
+    }
+
+    @GetMapping("/queryByOrderId")
+    @ResponseBody
+    public PayInfo queryByOrderId(@RequestParam String orderId){
+        return payService.queryByOrderId(orderId);
     }
 }
